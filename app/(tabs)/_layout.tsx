@@ -1,45 +1,55 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { Tabs } from "expo-router";
+import { ROUTE_NAME } from "../../src/helpers/routes";
+import { COLORS } from "../../src/helpers/colors";
+import IconAdapter from "../../src/helpers/iconAdapter";
 
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+const _layout = () => {
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
+    <Tabs screenOptions={{ headerShown: false, tabBarActiveTintColor: COLORS.primaryColors }}>
       <Tabs.Screen
-        name="index"
+        name={ROUTE_NAME.Home}
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: "Home",
+          tabBarIcon: ({ color }) => (
+           <IconAdapter family='Entypo' name="home" size={24} color={color} />
+          ),
+        }}
+      />
+  
+      <Tabs.Screen
+        name={ROUTE_NAME.Myorders}
+        options={{
+          title: "My Orders",
+          tabBarIcon: ({ color }) => (
+            <IconAdapter family='Entypo' name="shopping-bag" size={24} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name={ROUTE_NAME.wishlist}
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: "Wishlist",
+          tabBarIcon: ({ color }) => (
+            <IconAdapter family='Entypo' name="heart" size={24} color={color} />
+          ),
+        }}
+      />
+          <Tabs.Screen
+        name={ROUTE_NAME.Profile}
+        options={{
+          title: "Profile",
+          tabBarIcon: ({ color }) => (
+            <IconAdapter family='Entypo' name="user" size={24} color={color} />
+          ),
         }}
       />
     </Tabs>
   );
-}
+};
+
+export default _layout;
+
+const styles = StyleSheet.create({});
