@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Entypo from "@expo/vector-icons/Entypo";
@@ -72,9 +72,9 @@ const IconAdapter: React.FC<IconProps> = ({
     return <Foundation name="alert" size={24} color="red" />;
   }
   return (
-    <TouchableWithoutFeedback onPress={onPress}>
+    <TouchableOpacity onPress={onPress}>
       <IconComponent name={name as any} size={size} color={color} style={style} />
-    </TouchableWithoutFeedback>
+    </TouchableOpacity>
   );
 };
 

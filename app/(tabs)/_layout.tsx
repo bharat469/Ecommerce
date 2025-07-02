@@ -1,12 +1,21 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
-import { Tabs } from "expo-router";
+import React, { useEffect, useState } from "react";
+import { Redirect, Tabs, useRouter } from "expo-router";
 import { ROUTE_NAME } from "../../src/helpers/routes";
 import { COLORS } from "../../src/helpers/colors";
 import IconAdapter from "../../src/helpers/iconAdapter";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 const _layout = () => {
+  const router = useRouter()
+  let Authenticated = undefined
+
+  if(Authenticated===undefined){
+    return <Redirect href='/(beforeAuth)/login'/>
+  }
+
+
   return (
     <Tabs screenOptions={{ headerShown: false, tabBarActiveTintColor: COLORS.primaryColors }}>
       <Tabs.Screen
