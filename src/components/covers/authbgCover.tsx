@@ -17,14 +17,16 @@ type authBgProps = {
   imgSource?: ImageSourcePropType;
   children: React.ReactNode;
   isBackIcon?: boolean;
-  headerTypo?:string
+  headerTypo?:string;
+  extraStyleOfWhiteSpace?:any;
 };
 
 const AuthbgCover: React.FC<authBgProps> = ({
   imgSource = require("../../../assets/images/city.png"),
   children,
   isBackIcon = false,
-  headerTypo='Hi there!! Welcome 👋'
+  headerTypo='Hi there!! Welcome 👋',
+  extraStyleOfWhiteSpace
 }) => {
   const router = useRouter();
   return (
@@ -44,7 +46,7 @@ const AuthbgCover: React.FC<authBgProps> = ({
               size={32}
             />
           )}
-        <View style={styles.mainDataView}>
+        <View style={[styles.mainDataView,extraStyleOfWhiteSpace]}>
         <Text style={styles.headerText}>{headerTypo}</Text>
           {children}
         </View>
