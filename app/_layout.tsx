@@ -10,7 +10,7 @@ export default function RootLayout() {
   if (!fontLoaded) return null;
   return (
     <SafeAreaProvider>
-      <ExpoStatusBar style="auto" />
+      <ExpoStatusBar style="dark" />
       <SafeAreaView style={{ flex: 1 }}>
         <Slot/>
       </SafeAreaView>

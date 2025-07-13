@@ -3,7 +3,7 @@ import React from 'react'
 import { STATIC_IMAGE_LINKS } from './imageUrl'
 
 type ImageProps={
-    source?:string,
+  source: { uri: string } | number,
     style:any,
 
 }
