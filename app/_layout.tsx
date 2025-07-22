@@ -1,9 +1,9 @@
-import { Redirect, Slot, Stack, useRouter, useSegments } from "expo-router";
+import {Slot } from "expo-router";
 import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { useOpenSansFonts } from "@/src/helpers/fontFamily";
-import { useEffect, useState } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import {Provider} from 'react-redux'
+import store from "@/src/redux/store";
 
 export default function RootLayout() {
   const [fontLoaded] = useOpenSansFonts();
@@ -12,7 +12,10 @@ export default function RootLayout() {
     <SafeAreaProvider>
       <ExpoStatusBar style="dark" />
       <SafeAreaView style={{ flex: 1 }}>
+        <Provider store={store}>
         <Slot/>
+        </Provider>
+
       </SafeAreaView>
     </SafeAreaProvider>
   );

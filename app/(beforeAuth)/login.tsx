@@ -17,10 +17,12 @@ import { useFormValidation } from "@/src/components/useFormValidation";
 import { useRouter } from "expo-router";
 import { ROUTE_NAME } from "@/src/helpers/routes";
 import AuthbgCover from "@/src/components/covers/authbgCover";
+import { useDispatch } from "react-redux";
+import { REDUX_NAME } from "@/src/helpers/reduxConstants";
 
 const Login = () => {
   const router = useRouter();
-
+  const dispatch = useDispatch()
   const { values, errors, validate, handleChange } = useFormValidation({
     email: "",
     password: "",
@@ -29,7 +31,8 @@ const Login = () => {
   const _handleLogin = () => {
     const isValid = validate();
     if (isValid) {
-      console.log("✅ Login payload:", values);
+      dispatch({type:REDUX_NAME.SET_EMAIL_PASSWORD_LOGIN,payload:values})
+     
     } else {
       console.log("❌ Validation failed. Errors will be shown in UI.", errors);
     }
